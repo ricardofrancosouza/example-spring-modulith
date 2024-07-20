@@ -1,4 +1,4 @@
-package com.rivi.accounting.notification.internal
+package com.rivi.notification.internal
 
 import java.util.Date
 

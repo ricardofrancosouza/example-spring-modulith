@@ -1,6 +1,5 @@
-package com.rivi.accounting
+package com.rivi.product
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
@@ -8,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableAsync
 
 @EnableAsync
 @SpringBootApplication
-@ComponentScan(basePackages = ["com.rivi.accounting.*"])
+@ComponentScan(basePackages = ["com.rivi.*"])
 class AccountingApplication
 
 fun main(args: Array<String>) {

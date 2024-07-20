@@ -15,8 +15,13 @@ java {
 	}
 }
 
-repositories {
-	mavenCentral()
+allprojects {
+	repositories {
+		mavenCentral()
+		mavenLocal()
+		maven { url = uri("https://repo.spring.io/milestone") }
+		maven { url = uri("https://repo.spring.io/snapshot") }
+	}
 }
 
 extra["springCloudVersion"] = "2023.0.3"
@@ -35,10 +40,41 @@ dependencies {
 	runtimeOnly("org.springframework.modulith:spring-modulith-observability")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-	testImplementation("org.springframework.cloud:spring-cloud-starter-contract-verifier")
+	//testImplementation("org.springframework.cloud:spring-cloud-starter-contract-verifier")
 	testImplementation("org.springframework.modulith:spring-modulith-starter-test")
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	implementation(project(":product"))
+}
+
+subprojects {
+	apply(plugin = "org.jetbrains.kotlin.jvm")
+	apply(plugin = "io.spring.dependency-management")
+
+	repositories {
+		mavenCentral()
+		mavenLocal()
+		maven { url = uri("https://repo.spring.io/milestone") }
+		maven { url = uri("https://repo.spring.io/snapshot") }
+	}
+
+	dependencies {
+		implementation("org.springframework.boot:spring-boot-starter-actuator")
+		implementation("org.springframework.boot:spring-boot-starter-data-rest")
+		implementation("org.springframework.boot:spring-boot-starter-web-services")
+		implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+		implementation("io.micrometer:micrometer-tracing-bridge-brave")
+		implementation("org.jetbrains.kotlin:kotlin-reflect")
+		implementation("org.springframework.modulith:spring-modulith-starter-core")
+		runtimeOnly("org.springframework.modulith:spring-modulith-actuator")
+		runtimeOnly("org.springframework.modulith:spring-modulith-observability")
+		testImplementation("org.springframework.boot:spring-boot-starter-test")
+		testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+		testImplementation("org.springframework.cloud:spring-cloud-starter-contract-verifier")
+		testImplementation("org.springframework.modulith:spring-modulith-starter-test")
+		testImplementation("org.junit.jupiter:junit-jupiter")
+		testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	}
 }
 
 dependencyManagement {
@@ -63,4 +99,14 @@ tasks.withType<Test> {
 
 tasks.contractTest {
 	useJUnitPlatform()
+}
+
+java {
+	// Defina a saída como uma biblioteca para permitir a dependência dos módulos
+	withSourcesJar()
+}
+
+tasks.withType<Jar> {
+	// Opcional: Inclua fontes no JAR
+	from(sourceSets["main"].output)
 }

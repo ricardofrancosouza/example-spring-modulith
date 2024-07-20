@@ -1,16 +1,15 @@
-package com.rivi.accounting.notification
+package com.rivi.product.notification
 
-import com.rivi.accounting.AccountingApplication
-import com.rivi.accounting.product.ProductService
-import com.rivi.accounting.product.internal.Product
+import com.rivi.product.AccountingApplication
+import com.rivi.product.ProductService
+import com.rivi.product.internal.Product
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.modulith.test.PublishedEvents
 
 @SpringBootTest(classes = [AccountingApplication::class], webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class NotificationServiceTest {
+class ProductServiceTest {
 
     @Autowired
     lateinit var productService: ProductService

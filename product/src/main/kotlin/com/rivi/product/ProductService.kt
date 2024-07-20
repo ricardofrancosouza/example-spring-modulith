@@ -1,7 +1,7 @@
-package com.rivi.accounting.product
+package com.rivi.product
 
-import com.rivi.accounting.notification.NotificationDTO
-import com.rivi.accounting.product.internal.Product
+import com.rivi.com.rivi.events.ProductCreated
+import com.rivi.product.internal.Product
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -12,6 +12,6 @@ class ProductService(private val events: ApplicationEventPublisher) {
 
     @Transactional
     fun create(product: Product){
-        events.publishEvent(NotificationDTO(date = Date(), "SMS", product.name))
+        events.publishEvent(ProductCreated(date = Date(), "SMS", product.name))
     }
 }
