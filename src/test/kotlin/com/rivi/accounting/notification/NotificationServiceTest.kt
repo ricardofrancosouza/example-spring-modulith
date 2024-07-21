@@ -3,6 +3,7 @@ package com.rivi.accounting.notification
 import com.rivi.accounting.AccountingApplication
 import com.rivi.accounting.product.ProductService
 import com.rivi.accounting.product.internal.Product
+import com.rivi.com.rivi.product.TestService
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,6 +15,8 @@ class NotificationServiceTest {
 
     @Autowired
     lateinit var productService: ProductService
+    @Autowired
+    lateinit var testService: TestService
 
     @Test
     fun `should pulbish event`(){
@@ -23,6 +26,7 @@ class NotificationServiceTest {
                 description = "teste",
                 price = 200
             ))
+            this.productService.create()
         }
 
     }

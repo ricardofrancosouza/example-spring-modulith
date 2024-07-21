@@ -39,6 +39,7 @@ dependencies {
 	testImplementation("org.springframework.modulith:spring-modulith-starter-test")
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	implementation(project(":product"))
 }
 
 dependencyManagement {
@@ -63,4 +64,15 @@ tasks.withType<Test> {
 
 tasks.contractTest {
 	useJUnitPlatform()
+}
+subprojects {
+	apply(plugin = "org.jetbrains.kotlin.jvm")
+	apply(plugin = "io.spring.dependency-management")
+
+	repositories {
+		mavenCentral()
+		mavenLocal()
+		maven { url = uri("https://repo.spring.io/milestone") }
+		maven { url = uri("https://repo.spring.io/snapshot") }
+	}
 }

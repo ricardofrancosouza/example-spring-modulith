@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableAsync
 
 @EnableAsync
 @SpringBootApplication
-@ComponentScan(basePackages = ["com.rivi.accounting.*"])
+@ComponentScan(basePackages = ["com.rivi.*"])
 class AccountingApplication
 
 fun main(args: Array<String>) {
