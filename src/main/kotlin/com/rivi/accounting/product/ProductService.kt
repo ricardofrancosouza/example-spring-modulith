@@ -16,8 +16,4 @@ class ProductService(private val events: ApplicationEventPublisher) {
         events.publishEvent(NotificationDTO(date = Date(), "SMS", product.name))
     }
 
-    @Transactional
-    fun create(){
-        events.publishEvent(ProductEventTest("SMS"))
-    }
 }

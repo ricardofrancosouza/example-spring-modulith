@@ -4,3 +4,4 @@ plugins {
 rootProject.name = "accounting"
 include("product")
 include("product")
+include("order")

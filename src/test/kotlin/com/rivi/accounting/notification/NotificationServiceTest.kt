@@ -26,7 +26,7 @@ class NotificationServiceTest {
                 description = "teste",
                 price = 200
             ))
-            this.productService.create()
+            this.testService.create()
         }
 
     }

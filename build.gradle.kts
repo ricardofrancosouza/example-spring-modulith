@@ -40,6 +40,7 @@ dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation(project(":product"))
+	implementation(project(":order"))
 }
 
 dependencyManagement {
